@@ -346,7 +346,7 @@ end
 
 @deprecate integer(x) Integer(x)
 
-for (f,t) in ((:uint8,:UInt8), (:uint16,:UInt16), (:uint32,:UInt32), (:uint64,:Uint64),
+for (f,t) in ((:uint8,:UInt8), (:uint16,:UInt16), (:uint32,:UInt32), (:uint64,:UInt64),
               (:int8,:Int8),   (:int16,:Int16),   (:int32,:Int32),   (:int64,:Int64),
               (:int128,:Int128), (:uint128,:UInt128), (:signed,:Int), (:unsigned,:UInt),
               (:integer,:Int), (:int,:Int), (:uint,:UInt))

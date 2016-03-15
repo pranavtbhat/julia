@@ -198,21 +198,21 @@ class DebugObjectRegistrar {
 private:
     void NotifyGDB(OwningBinary<ObjectFile> &DebugObj)
     {
-      const char *Buffer = DebugObj.getBinary()->getMemoryBufferRef().getBufferStart();
-      size_t      Size = DebugObj.getBinary()->getMemoryBufferRef().getBufferSize();
+        const char *Buffer = DebugObj.getBinary()->getMemoryBufferRef().getBufferStart();
+        size_t      Size = DebugObj.getBinary()->getMemoryBufferRef().getBufferSize();
 
-      assert(Buffer && "Attempt to register a null object with a debugger.");
-      jit_code_entry *JITCodeEntry = new jit_code_entry();
+        assert(Buffer && "Attempt to register a null object with a debugger.");
+        jit_code_entry *JITCodeEntry = new jit_code_entry();
 
-      if (!JITCodeEntry) {
-          jl_printf(JL_STDERR, "WARNING: Allocation failed when registering a JIT entry!\n");
-      }
-      else {
-          JITCodeEntry->symfile_addr = Buffer;
-          JITCodeEntry->symfile_size = Size;
+        if (!JITCodeEntry) {
+            jl_printf(JL_STDERR, "WARNING: Allocation failed when registering a JIT entry!\n");
+        }
+        else {
+            JITCodeEntry->symfile_addr = Buffer;
+            JITCodeEntry->symfile_size = Size;
 
-          NotifyDebugger(JITCodeEntry);
-      }
+            NotifyDebugger(JITCodeEntry);
+        }
     }
 
     std::vector<OwningBinary<ObjectFile>> SavedObjects;
@@ -331,9 +331,9 @@ public:
 
     void addGlobalMapping(StringRef Name, uint64_t Addr)
     {
-       bool successful = GlobalSymbolTable.insert(make_pair(getMangledName(Name), (void*)Addr)).second;
-       (void)successful;
-       assert(successful);
+        bool successful = GlobalSymbolTable.insert(make_pair(getMangledName(Name), (void*)Addr)).second;
+        (void)successful;
+        assert(successful);
     }
 
     void *getPointerToGlobalIfAvailable(StringRef S) {
