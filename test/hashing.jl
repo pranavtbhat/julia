@@ -108,15 +108,24 @@ end
 # issue 15659
 for prec in [3, 11, 15, 16, 31, 32, 33, 63, 64, 65, 254, 255, 256, 257, 258, 1023, 1024, 1025],
     v in Any[-0.0, 0, 1, -1, 1//10, 2//10, 3//10, 1//2, pi]
+    println("A")
     setprecision(prec) do
+        println("B")
         x = convert(BigFloat, v)
+        println("C")
         @test precision(x) == prec
+        println("D")
         num, pow, den = Base.decompose(x)
+        println("E")
         y = num*big(2.0)^pow/den
+        println("F")
         @test precision(y) == prec
+        println("G")
         @show prec, v, x, y
+        println("H")
         @test isequal(x, y)
     end
+    println("I")
 end
 
 # seems unrelated to hashing but depends on Base.decompose (also issue 15659)
