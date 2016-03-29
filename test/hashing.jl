@@ -114,6 +114,7 @@ for prec in [3, 11, 15, 16, 31, 32, 33, 63, 64, 65, 254, 255, 256, 257, 258, 102
         num, pow, den = Base.decompose(x)
         y = num*big(2.0)^pow/den
         @test precision(y) == prec
+        @show prec, v, x, y
         @test isequal(x, y)
     end
 end
