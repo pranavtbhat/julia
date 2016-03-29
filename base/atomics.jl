@@ -186,6 +186,11 @@ for op in [:+, :-, :max, :min]
             cmp = old
             old = atomic_cas!(var, cmp, new)
             reinterpret(IT, old) == reinterpret(IT, cmp) && return new
+            # Temporary solution before we have gc transition support in codegen.
+            # This could mess up gc state when we add codegen support.
+            # Use these as a safe point
+            gc_state = ccall(:jl_gc_safe_enter, Int8, ())
+            ccall(:jl_gc_safe_leave, Void, (Int8,), gc_state)
         end
     end
 end
